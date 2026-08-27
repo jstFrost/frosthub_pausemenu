@@ -4,7 +4,7 @@ lua54 'yes'
 
 name 'frosthub_pausemenu'
 description 'Frost Hub - in-game pause menu (camera side-view, player card, quick links)'
-author 'Frost Hub'
+author 'jstFrost'
 version '1.0.0'
 
 shared_scripts {

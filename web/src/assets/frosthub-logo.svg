@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Frost Hub">
+    <circle cx="100" cy="100" r="87" fill="#0d0f0e"/>
+    <circle cx="100" cy="100" r="87" fill="none" stroke="#d4e83a" stroke-width="5"/>
+    <g fill="#d4e83a">
+        <!-- shared stem: serves as the F stem and as the missing left leg of the H -->
+        <rect x="50" y="62" width="13" height="76"/>
+        <!-- F top arm -->
+        <rect x="50" y="62" width="55" height="13"/>
+        <!-- F middle arm, stops short of the H -->
+        <rect x="50" y="96" width="50" height="13"/>
+        <!-- H crossbar: starts in mid-air, the F fills the gap -->
+        <rect x="110" y="96" width="40" height="13"/>
+        <!-- H right leg -->
+        <rect x="137" y="62" width="13" height="76"/>
+    </g>
+</svg>

@@ -1,4 +1,9 @@
-export function formatMoney(amount) {
+export function formatMoney(amount, currency) {
   const value = Number(amount) || 0
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+  const { locale = 'en-US', symbol = '$', decimals = 2 } = currency || {}
+
+  return symbol + value.toLocaleString(locale, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  })
 }

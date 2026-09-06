@@ -9,8 +9,8 @@ const ConnectPanel = () => {
   const open = (url) => url && window.invokeNative && window.invokeNative('openUrl', url)
 
   const entries = [
-    { label: lang.connect_discord, Icon: IconDiscord, url: links.discord },
-    { label: lang.connect_store, Icon: IconStore, url: links.store },
+    { id: 'discord', label: lang.connect_discord, Icon: IconDiscord, url: links.discord },
+    { id: 'store', label: lang.connect_store, Icon: IconStore, url: links.store },
   ]
 
   return (
@@ -19,8 +19,8 @@ const ConnectPanel = () => {
         {lang.connect_description}
       </p>
       <div className="mt-auto flex gap-[14px]">
-        {entries.map(({ label, Icon, url }) => (
-          <button key={label} onClick={() => open(url)} className="flex items-center gap-[9px]">
+        {entries.map(({ id, label, Icon, url }) => (
+          <button key={id} onClick={() => open(url)} className="flex items-center gap-[9px]">
             <span className="fh-round">
               <Icon />
             </span>

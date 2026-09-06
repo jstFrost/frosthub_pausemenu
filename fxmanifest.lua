@@ -7,11 +7,16 @@ description 'Frost Hub - in-game pause menu (camera side-view, player card, quic
 author 'jstFrost'
 version '1.0.0'
 
+dependencies {
+    'ox_lib',
+    'oxmysql',
+}
+
 shared_scripts {
+    '@ox_lib/init.lua',
     'config/settings.lua',
     'config/locales.lua',
     'locales/*.lua',
-    '@ox_lib/init.lua',
 }
 
 client_scripts {

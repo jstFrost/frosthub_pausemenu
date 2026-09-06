@@ -43,9 +43,12 @@ local function fromEsx(src)
     local xPlayer = ESXObject.GetPlayerFromId(src)
     if not xPlayer then return nil end
     local bankAccount = xPlayer.getAccount('bank')
+    local job = xPlayer.getJob()
     return {
         name = xPlayer.getName(),
-        job  = xPlayer.getJob() and xPlayer.getJob().name or 'unemployed',
+        -- label first, so ESX reads "Police Officer" like QB and QBox do
+        -- instead of the raw "police".
+        job  = job and (job.label or job.name) or 'unemployed',
         cash = tonumber(xPlayer.getMoney()) or 0,
         bank = bankAccount and bankAccount.money or 0,
     }

@@ -18,6 +18,17 @@ Config.Locale = 'en'
 -- Prints extra information in the server/client console.
 Config.Debug = false
 
+-- Money formatting in the Assets panel.
+--   locale   -> number format. 'auto' follows Config.Locale
+--               (en -> 1,234.00 | it/es -> 1.234,00 | fr -> 1 234,00)
+--   symbol   -> shown before the amount
+--   decimals -> decimal digits
+Config.Currency = {
+    locale   = 'auto',
+    symbol   = '$',
+    decimals = 2,
+}
+
 Config.Keybind = {
     command = 'frosthubmenu',
     defaultKey = 'ESCAPE',
@@ -131,6 +142,31 @@ function Config.ResolveTheme()
         resolved[key] = value
     end
     return resolved
+end
+
+local CURRENCY_LOCALES = {
+    en = 'en-US',
+    it = 'it-IT',
+    es = 'es-ES',
+    fr = 'fr-FR',
+}
+
+function Config.ResolveCurrency()
+    local currency = Config.Currency or {}
+    local locale = currency.locale
+
+    if not locale or locale == 'auto' then
+        locale = CURRENCY_LOCALES[Config.Locale] or 'en-US'
+    end
+
+    local decimals = currency.decimals
+    if type(decimals) ~= 'number' then decimals = 2 end
+
+    return {
+        locale   = locale,
+        symbol   = currency.symbol or '$',
+        decimals = decimals,
+    }
 end
 
 function Config.IsPlayerDead()

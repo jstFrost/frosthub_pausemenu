@@ -1,0 +1,6 @@
+# Build tooling only. web/dist is intentionally committed: FiveM loads the
+# compiled interface from there, so the resource must work straight after a
+# clone, without running a build.
+web/node_modules/
+web/.vite/
+*.log

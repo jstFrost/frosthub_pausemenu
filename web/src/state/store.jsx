@@ -10,10 +10,17 @@ const defaultTheme = {
   textSecondary: 'rgba(242, 244, 236, 0.6)',
 }
 
+const defaultCurrency = {
+  locale: 'en-US',
+  symbol: '$',
+  decimals: 2,
+}
+
 export const initialSession = {
   open: false,
   view: null,
   theme: defaultTheme,
+  currency: defaultCurrency,
   locale: {},
   links: {},
   serverName: 'FROST HUB',
@@ -29,6 +36,7 @@ function sessionReducer(state, action) {
         open: !!action.payload.open,
         view: action.payload.view ?? state.view,
         theme: action.payload.theme && Object.keys(action.payload.theme).length ? action.payload.theme : state.theme,
+        currency: action.payload.currency ?? state.currency,
         locale: action.payload.locale ?? state.locale,
         links: action.payload.links ?? state.links,
         serverName: action.payload.serverName ?? state.serverName,

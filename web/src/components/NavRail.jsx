@@ -12,19 +12,19 @@ const NavRail = () => {
   }
 
   const items = [
-    { label: lang.nav_home, Icon: IconHome, active: true },
-    { label: lang.nav_map, Icon: IconMap, action: 'openMap' },
-    { label: lang.nav_settings, Icon: IconSettings, action: 'openSettings' },
-    { label: lang.nav_exit, Icon: IconExit, action: 'leave' },
+    { id: 'home', label: lang.nav_home, Icon: IconHome, active: true },
+    { id: 'map', label: lang.nav_map, Icon: IconMap, action: 'openMap' },
+    { id: 'settings', label: lang.nav_settings, Icon: IconSettings, action: 'openSettings' },
+    { id: 'exit', label: lang.nav_exit, Icon: IconExit, action: 'leave' },
   ]
 
   return (
     <nav className="fh-panel fh-rail-in w-[232px] shrink-0 py-[18px] flex flex-col">
       <span className="fh-eyebrow px-[16px] mb-[12px]">{lang.nav_title}</span>
 
-      {items.map(({ label, Icon, active, action }) => (
+      {items.map(({ id, label, Icon, active, action }) => (
         <button
-          key={label}
+          key={id}
           className={`fh-nav-item ${active ? 'is-active' : ''}`}
           onClick={action ? () => callNui(action) : undefined}
         >

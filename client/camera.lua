@@ -43,9 +43,11 @@ function FrostCam.Start()
     end)
 end
 
-function FrostCam.Stop()
+-- `instant` skips the blend, for teardown paths (resource stop) where the
+-- interpolation would never get the frames it needs to finish.
+function FrostCam.Stop(instant)
     if not activeCam then return end
-    RenderScriptCams(false, true, 1250, true, false)
+    RenderScriptCams(false, true, instant and 0 or 1250, true, false)
     DestroyCam(activeCam, false)
     activeCam = nil
 end

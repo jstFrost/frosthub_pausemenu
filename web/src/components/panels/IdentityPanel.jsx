@@ -11,7 +11,7 @@ const IdentityPanel = () => {
       <div className="mb-[12px] pl-[11px] border-l-2" style={{ borderColor: 'var(--accent)' }}>
         <div className="text-[20px] font-bold leading-tight tracking-[1px] uppercase">{player.name || '—'}</div>
         <div className="fh-meta mt-[3px]">
-          {lang.identity_id} {String(player.source ?? '—').padStart(2, '0')}
+          {lang.identity_id} {player.source != null ? String(player.source).padStart(2, '0') : '—'}
         </div>
       </div>
 

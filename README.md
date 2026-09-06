@@ -122,6 +122,16 @@ end
 ![Assets panel](img-preview/crop-assets.png)
 
 **Assets** — net worth, with cash on hand and bank balance broken out below.
+Number formatting follows `Config.Locale` by default, so an Italian menu
+reads `$1.234,00` instead of `$1,234.00`. Override it if you need to:
+
+```lua
+Config.Currency = {
+    locale   = 'auto',   -- 'auto' follows Config.Locale, or e.g. 'de-DE'
+    symbol   = '$',
+    decimals = 2,
+}
+```
 
 ![Playtime panel](img-preview/crop-playtime.png)
 
@@ -140,10 +150,12 @@ Playtime is stored by this resource in its own `frosthub_playtime` table,
 so it behaves identically on ESX, QBCore and QBX and never requires an
 `ALTER TABLE` on your framework's tables.
 
-It adds a minute to every online player each minute, writes to the database
-every five minutes, and flushes on player disconnect and on resource stop,
-so a restart does not lose progress. While the menu is open its panels
-refresh once a minute, so the counter keeps moving as you watch it.
+Counting starts when a player joins, not when they first open the menu, and
+their stored total is read before the counter starts moving. It adds a
+minute to every online player each minute, writes to the database every five
+minutes, and flushes on disconnect and on resource stop, so a restart does
+not lose progress. While the menu is open its panels refresh once a minute,
+so the counter keeps moving as you watch it.
 
 ---
 
@@ -206,8 +218,12 @@ Config.Animation = {
     dict = 'amb@world_human_tourist_map@male@base',
     anim = 'base',
     prop = 'prop_tourist_map_01',
+    propBone = 28422,    -- bone the prop is attached to
 }
 ```
+
+The animation is skipped in a vehicle as well, so nobody pulls out a
+tourist map at the wheel.
 
 The interface is authored at 1080p and scaled to the player's resolution,
 so it keeps the same proportions on 1440p and 4K.

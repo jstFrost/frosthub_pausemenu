@@ -69,6 +69,11 @@ button {
   color: inherit;
   -webkit-tap-highlight-color: transparent;
 }
+/* Mouse clicks stay ring-free, keyboard focus stays visible. */
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 /* The layout is authored at 1080p and scaled to the player's resolution, so
    proportions stay identical on 1440p and 4K. */

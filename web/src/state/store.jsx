@@ -4,7 +4,7 @@ import { createContext, useContext, useReducer } from 'react'
 const defaultTheme = {
   accent: '#d4e83a',
   accentSoft: 'rgba(212, 232, 58, 0.15)',
-  panelBg: 'rgba(10, 12, 10, 0.72)',
+  panelBg: 'rgba(10, 12, 10, 0.55)',
   panelBorder: 'rgba(212, 232, 58, 0.25)',
   textPrimary: '#f2f4ec',
   textSecondary: 'rgba(242, 244, 236, 0.6)',

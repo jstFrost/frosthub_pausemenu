@@ -6,12 +6,12 @@ import PlaytimePanel from './panels/PlaytimePanel'
 import ConnectPanel from './panels/ConnectPanel'
 
 const Console = () => (
-  <div className="w-[1120px] flex flex-col gap-[26px]">
+  <div className="w-[1120px] flex flex-col gap-[32px]">
     <Masthead />
 
-    <div className="flex gap-[22px] items-stretch">
+    <div className="flex gap-[26px] items-stretch">
       <NavRail />
-      <div className="flex-1 grid grid-cols-2 gap-[22px]">
+      <div className="flex-1 grid grid-cols-2 gap-[26px]">
         <IdentityPanel />
         <AssetsPanel />
         <PlaytimePanel />

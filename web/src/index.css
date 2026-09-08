@@ -42,10 +42,12 @@
   --font: 'Chakra Petch', 'Segoe UI', Arial, sans-serif;
   --accent: #d4e83a;
   --accent-soft: rgba(212, 232, 58, 0.15);
-  --panel-bg: rgba(10, 12, 10, 0.72);
+  --panel-bg: rgba(10, 12, 10, 0.55);
   --panel-border: rgba(212, 232, 58, 0.25);
   --text-primary: #f2f4ec;
   --text-secondary: rgba(242, 244, 236, 0.6);
+  /* Cinematic ease-out: snappier finish than the browser default "ease". */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html, body, #root {
@@ -86,6 +88,8 @@ button:focus-visible {
 .fh-panel {
   position: relative;
   background:
+    /* Diagonal sheen: light catching the glass from the top-left. */
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 40%),
     repeating-linear-gradient(0deg,
       rgba(255, 255, 255, 0.018) 0 1px,
       transparent 1px 3px),
@@ -99,7 +103,12 @@ button:focus-visible {
     14px 100%,
     0 calc(100% - 14px)
   );
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(22px) saturate(180%) brightness(1.05);
+  /* Ambient contact shadow for lift + a hairline top highlight, like light
+     catching the top edge of glass. */
+  box-shadow:
+    0 24px 48px -18px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .fh-panel::before,
 .fh-panel::after {
@@ -151,7 +160,7 @@ button:focus-visible {
   background: transparent;
   width: 100%;
   text-align: left;
-  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  transition: color 0.25s var(--ease-premium), background 0.25s var(--ease-premium), border-color 0.25s var(--ease-premium);
 }
 .fh-nav-item:hover {
   color: var(--text-primary);
@@ -176,22 +185,24 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: color 0.3s var(--ease-premium), border-color 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium), transform 0.3s var(--ease-premium);
 }
 .fh-round svg { width: 17px; height: 17px; }
 .fh-round:hover {
   color: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 0 10px var(--accent-soft);
+  box-shadow: 0 0 14px var(--accent-soft);
   transform: translateY(-2px);
 }
 
 /* ---------------- ENTRANCE ---------------- */
+/* A soft focus-pull (blur + scale) reads more premium than a plain
+   slide-and-fade. */
 @keyframes fhPanelIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(14px) scale(0.98); filter: blur(4px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
 }
-.fh-in { animation: fhPanelIn 0.55s ease both; }
+.fh-in { animation: fhPanelIn 0.65s var(--ease-premium) both; }
 .fh-d1 { animation-delay: 0.05s; }
 .fh-d2 { animation-delay: 0.12s; }
 .fh-d3 { animation-delay: 0.19s; }
@@ -219,4 +230,11 @@ button:focus-visible {
 }
 .fh-accent-glow {
   background: radial-gradient(ellipse at center, var(--accent-soft) 0%, rgba(0, 0, 0, 0) 62%);
+  /* Opacity only: this element is also positioned via an inline transform
+     (translate for centering), so animating transform here would fight it. */
+  animation: ambientBreathe 8s ease-in-out infinite;
+}
+@keyframes ambientBreathe {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
 }

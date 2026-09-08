@@ -3,7 +3,12 @@ import Panel from '../Panel'
 
 const Unit = ({ value, label }) => (
   <div className="flex-1 text-center">
-    <div className="text-[30px] font-bold leading-none tabular-nums">{String(value).padStart(2, '0')}</div>
+    <div
+      className="text-[30px] font-bold leading-none tabular-nums"
+      style={{ textShadow: '0 0 14px var(--accent-soft)' }}
+    >
+      {String(value).padStart(2, '0')}
+    </div>
     <div className="fh-meta mt-[6px]">{label}</div>
   </div>
 )

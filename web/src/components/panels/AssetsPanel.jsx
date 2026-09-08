@@ -13,7 +13,12 @@ const AssetsPanel = () => {
   return (
     <Panel title={lang.assets_title} delay="fh-d2">
       <div className="mb-[12px] pl-[11px] border-l-2" style={{ borderColor: 'var(--accent)' }}>
-        <div className="text-[20px] font-bold leading-tight tracking-[0.5px]">{formatMoney(cash + bank, currency)}</div>
+        <div
+          className="text-[20px] font-bold leading-tight tracking-[0.5px]"
+          style={{ textShadow: '0 0 14px var(--accent-soft)' }}
+        >
+          {formatMoney(cash + bank, currency)}
+        </div>
         <div className="fh-meta mt-[3px]">{lang.assets_total}</div>
       </div>
 
